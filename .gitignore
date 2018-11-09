@@ -16,6 +16,7 @@
 # Ignore Emacs stuff
 \#*#
 *~
+.#*
 
 ## Specific to RubyMotion:
 .dat*
