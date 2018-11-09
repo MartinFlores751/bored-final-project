@@ -13,6 +13,11 @@
 # Used by dotenv library to load environment variables.
 # .env
 
+# Ignore Emacs stuff
+\#*#
+*~
+.#*
+
 ## Specific to RubyMotion:
 .dat*
 .repl_history
