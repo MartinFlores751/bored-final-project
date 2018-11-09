@@ -4,4 +4,4 @@ rvm:
 install:
   - bundle install --without development production
 script:
-  - bundle exec rake testall
+  - bundle exec rake
