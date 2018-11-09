@@ -2,6 +2,6 @@ language: ruby
 rvm:
   - 2.3.3
 install:
-  - bundle install --without development
+  - bundle install --without development production
 script:
   - bundle exec rake testall
