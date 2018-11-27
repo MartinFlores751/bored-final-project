@@ -20,3 +20,11 @@ get "/dashboard" do
 	authenticate!
 	erb :dashboard
 end
+
+get "/finder" do
+	erb :finder
+end
+
+get "/storeroom" do
+	erb :storage
+end
