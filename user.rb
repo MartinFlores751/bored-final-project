@@ -15,6 +15,7 @@ class User
     property :email, String
     property :password, String
     property :created_at, DateTime
+    property :creator, Boolean, :default=>false
 
     def login(password)
     	return self.password == password
@@ -27,4 +28,3 @@ DataMapper.finalize
 
 # automatically create the post table
 User.auto_upgrade!
-
