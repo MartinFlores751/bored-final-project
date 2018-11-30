@@ -58,6 +58,13 @@ def current_user
 	end
 end
 
+
+# TODO: Make this return True when on the market
+def display_search
+  return nil
+end
+
+
 #if the user is not signed in, will redirect to login page
 def authenticate!
 	if !current_user
