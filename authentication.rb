@@ -38,7 +38,12 @@ post "/register" do
 
 	u = User.new
 	u.email = email.downcase
-	u.password =  password
+	u.password = password
+	if !(params[:isLH].nil?)
+		u.role = 2
+	else
+		u.role = 1
+	end
 	u.save
 
 	session[:user_id] = u.id

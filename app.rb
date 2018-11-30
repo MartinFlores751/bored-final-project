@@ -11,6 +11,14 @@ require "sinatra/flash"
 # if the user is signed in, current_user will refer to the signed in user object.
 # if they are not signed in, current_user will be nil
 
+if User.all(role: 3).count == 0
+	u = User.new
+	u.email = "admin@admin.com"
+	u.password = "admin"
+	u.role = 3
+	u.save
+end
+
 get "/" do
 	erb :index
 end
