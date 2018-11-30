@@ -27,3 +27,11 @@ end
  get "/storeroom" do
 	erb :storage
 end
+
+get "/find_accountzoom" do
+	erb :find_accountzoom
+end
+
+get "/purchase" do
+	erb :purchase
+end
