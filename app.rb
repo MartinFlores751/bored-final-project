@@ -14,7 +14,12 @@ require "sinatra/flash"
 get "/" do
 	erb :index
 end
-
+get "/logged" do
+	erb :indexC
+end
+get "/seller" do
+	erb :indexS
+end
 
 get "/dashboard" do
 	authenticate!
@@ -34,4 +39,15 @@ end
 
 get "/purchase" do
 	erb :purchase
+end
+get "/manage" do
+ erb :manage
+end
+
+get "/Seller_history" do
+ erb :Seller_history
+end
+
+get "/upload_music" do
+ erb :upload_music
 end
