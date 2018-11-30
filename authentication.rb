@@ -38,7 +38,12 @@ post "/register" do
 
 	u = User.new
 	u.email = email.downcase
-	u.password =  password
+	u.password = password
+	if !(params[:isLH].nil?)
+		u.role = 2
+	else
+		u.role = 1
+	end
 	u.save
 
 	session[:user_id] = u.id
@@ -57,6 +62,13 @@ def current_user
 		return nil
 	end
 end
+
+
+# TODO: Make this return True when on the market
+def display_search
+  return nil
+end
+
 
 #if the user is not signed in, will redirect to login page
 def authenticate!
