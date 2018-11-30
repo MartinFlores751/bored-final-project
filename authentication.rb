@@ -67,7 +67,7 @@ end
 
 
 # TODO: Make this return True when on the market
-def display_search
+def display_search!
   return nil
 end
 
