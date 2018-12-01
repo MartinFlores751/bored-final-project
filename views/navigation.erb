@@ -1,12 +1,5 @@
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-  <% if current_user && current_user.role ==1 %>
-  <a class="navbar-brand" href="/logged">MusicSheet</a>
-  <% else if current_user && current_user.role ==2%>
-  <a class="navbar-brand" href="/seller">MusicSheet</a>
-  <% else %>
   <a class="navbar-brand" href="/">MusicSheet</a>
-  <% end %>
-  <% end %>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
