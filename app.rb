@@ -19,43 +19,47 @@ if User.all(role: 3).count == 0
 	u.save
 end
 
+# Langind page
 get "/" do
 	erb :index
 end
-get "/logged" do
-	erb :indexC
-end
-get "/seller" do
-	erb :indexS
-end
 
-get "/dashboard" do
-	authenticate!
+# User Dashboard
+get "/user" do
 	erb :dashboard
 end
 
- get "/finder" do
-	erb :finder
-end
- get "/storeroom" do
-	erb :storage
+# Seller Dashboard
+get "/sell" do
+	erb :sell
 end
 
+# ???
+get "/finder" do
+  return "?"
+end
+
+# ???
+get "/storeroom" do
+  return "?"
+end
+
+# Placeholder
 get "/find_accountzoom" do
-	erb :find_accountzoom
+  return "TEMP TEMP TEMP"
 end
 
+# Buy the current item
 get "/purchase" do
 	erb :purchase
 end
+
+# ???
 get "/manage" do
- erb :manage
+  return "?"
 end
 
-get "/Seller_history" do
- erb :Seller_history
-end
-
+# Only to seller
 get "/upload_music" do
  erb :upload_music
 end
