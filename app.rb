@@ -19,13 +19,13 @@ if User.all(role: 3).count == 0
 	u.save
 end
 
-# Langind page
+# Landing page
 get "/" do
 	erb :index
 end
 
 # User Dashboard
-get "/user" do
+get "/dashboard" do
 	erb :dashboard
 end
 
@@ -34,9 +34,9 @@ get "/sell" do
 	erb :sell
 end
 
-# ???
+# Search for sellers in seller DB
 get "/finder" do
-  return "?"
+  erb :finder
 end
 
 # ???
@@ -46,7 +46,7 @@ end
 
 # Placeholder
 get "/find_accountzoom" do
-  return "TEMP TEMP TEMP"
+  erb :zoom_tmp
 end
 
 # Buy the current item

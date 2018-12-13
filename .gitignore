@@ -56,3 +56,6 @@ build-iPhoneSimulator/
 
 # ignore db
 app.db
+
+# ignore lock
+Gemfile.lock

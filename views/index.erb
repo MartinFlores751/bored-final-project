@@ -1,18 +1,21 @@
 <div class="jumbotron">
   <div class="container">
+  
       <% if current_user && current_user.role ==1 %>
-      <h1 class="display-3">Hello, Musicians!</h1>
+      	<h1 class="display-3">Hello, Musicians!</h1>
         <p>This is the staring point to our online music sheet site.</p>
         <p><a class="btn btn-primary btn-lg" href="/storeroom" role="button">Owned music</a></p>
         <p><a class="btn btn-primary btn-lg" href="/finder" role="button">Find music</a></p>
+	
       <% else if current_user && current_user.role ==2%>
-      <h1 class="display-3">Hello, Musicians!</h1>
+      	<h1 class="display-3">Hello, Musicians!</h1>
         <p>This is the staring point to our online music sheet site.</p>
         <p><a class="btn btn-primary btn-lg" href="/manage" role="button">Manage Music</a></p>
         <p><a class="btn btn-primary btn-lg" href="/Seller_history" role="button">Seller History</a></p>
         <p><a class="btn btn-primary btn-lg" href="/upload_music" role="button">Upload Music</a></p>
+	
       <% else %>
-      <h1 class="display-4">Welcome to #{NAME_HERE}</h1>
+      	<h1 class="display-4">Welcome to #{NAME_HERE}</h1>
         <p class="lead">Find the music you never knew you wanted to play.</p>
         <hr class="my-4">
         <p>TEST TEST TEST TEST TEST</p>
