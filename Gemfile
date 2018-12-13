@@ -5,8 +5,14 @@ gem 'sinatra-flash'
 
 group :test do
   gem 'rake'
+  gem 'rack-test'
   gem 'rspec'
   gem 'rspec-core'
+  gem 'capybara'
+  gem 'dm-rspec'
+  gem 'rack_session_access'
+  gem 'poltergeist'
+  gem 'puma'
 end
 
 group :development do
