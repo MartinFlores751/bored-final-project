@@ -84,6 +84,7 @@ end
 # Request Handlers | User
 # ///////////////////////
 get "/dashboard" do
+  authenticate!
  if !current_user
   	redirect '/'
 else
@@ -97,16 +98,19 @@ end
 end
 
 get "/search" do
+  authenticate!
   @s = Sheet.all
   erb :finder
   return @s.to_json
 end
 
 get "/find_accountzoom" do
+  authenticate!
   erb :zoom_tmp
 end
 
 get "/purchase" do
+  authenticate!
   erb :purchase
 end
 
@@ -115,7 +119,7 @@ end
 # Request Handlers | Seller
 # /////////////////////////
 get "/seller_dashboard" do
- 	
+ 	authenticate!
   if current_user && current_user.role == 2
     @s = Sheet.all(email: current_user.email)
     erb :sell
@@ -126,6 +130,7 @@ get "/seller_dashboard" do
 end
 
 get "/upload_music" do
+  authenticate!
   if current_user.role == 1
     redirect "/"
   elsif current_user.role == 2
