@@ -50,7 +50,7 @@ get "/sell" do
 end
 
 # Search for sellers in seller DB
-get "/finder" do
+get "/search" do
   erb :finder
 end
 

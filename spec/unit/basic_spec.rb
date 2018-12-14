@@ -14,7 +14,7 @@ describe 'Music Sheet' do
     @sell.password = "money"
     @sell.role = 2
     @sell.save
-    
+
     @u = User.new
     @u.email = "guy@dude.com"
     @u.password = "totes"
@@ -29,22 +29,22 @@ describe 'Music Sheet' do
     s.save
   end
 
-  
+
   it 'should allow accessing the home page' do
     get '/'
     expect(last_response).to be_ok
   end
 
-  
+
   it 'should not be signed in by default' do
     visit '/'
     expect { page.get_rack_session_key('user_id') }.to raise_error(KeyError)
   end
 
-  
+
   it 'should allow signing up for buyer accounts' do
     visit '/sign_up'
-    
+
     fill_in 'email', with: "test@test.com"
     fill_in 'password', with: "test"
 
@@ -73,8 +73,8 @@ describe 'Music Sheet' do
     expect(u.password).to eq("a")
     expect(u.role).to eq(2)
   end
-  
-  
+
+
   it 'should allow logging in' do
     visit '/login'
 
@@ -89,7 +89,7 @@ describe 'Music Sheet' do
 
   it 'should allow signing out' do
     visit '/'
-    
+
     page.set_rack_session(user_id: @u.id)
     expect(page.get_rack_session_key('user_id')).to eq(@u.id)
 
@@ -98,7 +98,7 @@ describe 'Music Sheet' do
     expect { page.get_rack_session_key('user_id') }.to raise_error(KeyError)
   end
 
-  
+
   it 'should allow requests to /dashboard' do
     page.set_rack_session(user_id: @u.id)
 
@@ -108,7 +108,7 @@ describe 'Music Sheet' do
     expect(page).to have_current_path('/dashboard')
   end
 
-  
+
   it 'should allow requests to /search' do
     page.set_rack_session(user_id: @admin.id)
 
@@ -118,7 +118,7 @@ describe 'Music Sheet' do
     expect(page).to have_current_path('/search')
   end
 
-  
+
   it 'should allow POST requests to /upload_music' do
     page.set_rack_session(user_id: @sell.id)
     page.driver.browser.post('/upload_music')
@@ -127,10 +127,10 @@ describe 'Music Sheet' do
     expect(page).to have_current_path("/upload_music")
   end
 
-  
+
   it 'should allow uploading of music' do
     page.set_rack_session(user_id: @sell.id)
-    
+
     visit '/upload_music'
 
     fill_in 'title', with: "Mozart PT.2"
@@ -156,19 +156,19 @@ describe 'Music Sheet' do
     expect(page).to have_current_path('/seller_dashboard')
   end
 
-  
-  
-  it 'should allow user to view Sheet Music in /finder' do
+
+
+  it 'should allow user to view Sheet Music in /search' do
     page.set_rack_session(user_id: @u.id)
 
     sheet = Sheet.all()
 
-    visit '/finder'
+    visit '/search'
 
     sheet.each do |s|
       expect(page.body).to include(s.title)
     end
   end
 
-  
+
 end
