@@ -25,6 +25,33 @@ if User.all(role: 3).count == 0
   u.save
 end
 
+#Default users and default sheet for testing purposes
+if User.all(email: "default@license.com").count == 0
+  u = User.new
+  u.email = "default@license.com"
+  u.password = "default"
+  u.role = 2
+  u.save
+end
+
+if Sheet.all(title: "default title").count == 0
+  s = Sheet.new
+  s.email = "default@license.com"
+  s.title = "default title"
+  s.description = "default description"
+  s.file_path = "default path"
+  s.save
+end
+
+if User.all(email: "default@customer.com").count == 0
+  u = User.new
+  u.email = "default@customer.com"
+  u.password = "default"
+  u.role = 2
+  u.save
+end
+
+
 # Landing page
 get "/" do
   erb :index
