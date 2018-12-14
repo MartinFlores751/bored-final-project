@@ -6,9 +6,11 @@
 
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
     <ul class="navbar-nav mr-auto">
+      <% if !current_user %>
       <li class="nav-item">
         <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
       </li>
+      <% end %>
 
       <% if current_user %>
         <li class="nav-item">
@@ -16,7 +18,7 @@
           <li class="nav-item">
             <a class="nav-link" href="/storeroom">Owned</a>
             <li class="nav-item">
-              <a class="nav-link" href="/finder">Find new music</a>
+              <a class="nav-link" href="/search">Find new music</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/logout">Logout</a>
