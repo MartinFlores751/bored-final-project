@@ -89,9 +89,12 @@ elsif current_user.role == 2
 end
 end
 
+get "/seller_dashboard" do
+  return "?"
+end
 post "/upload_music" do
   #email = params["email"]
-  if current_user.role == 1
+  if current_user && current_user.role == 1
   redirect "/"
   elsif current_user.role == 2
   title = params["title"]
