@@ -84,13 +84,22 @@ end
 # Request Handlers | User
 # ///////////////////////
 get "/dashboard" do
-  @h = History.all(buyer: current_user.id)
+ if !current_user
+  	redirect '/'
+else
+	@h = History.all(buyer: current_user.id)
+	#what i want but cant figure out
+	#@s = Sheet.all(id: h.sheet_id)
+	@s = Sheet.all
   erb :dashboard
+  return @s.to_json
+end
 end
 
 get "/search" do
   @s = Sheet.all
   erb :finder
+  return @s.to_json
 end
 
 get "/find_accountzoom" do
@@ -106,11 +115,13 @@ end
 # Request Handlers | Seller
 # /////////////////////////
 get "/seller_dashboard" do
-  if current_user.role == 1
-    redirect "/"
-  else
+ 	
+  if current_user && current_user.role == 2
     @s = Sheet.all(email: current_user.email)
     erb :sell
+    return @s.to_json
+  else
+    redirect "/"
   end
 end
 
