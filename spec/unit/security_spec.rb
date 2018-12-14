@@ -10,7 +10,6 @@ describe 'When Customer, Music Sheet' do
     @u.role = 1
     @u.save
 
-    visit "/"
     page.set_rack_session(user_id: @u.id)
 
     s = Sheet.new
@@ -18,23 +17,26 @@ describe 'When Customer, Music Sheet' do
     s.title = "wow!"
     s.description = "om nom nom"
     s.file_path = "nope"
+    s.save
 
     s = Sheet.new
     s.email = "pop@pop.com"
     s.title = "mom!"
     s.description = "ow now now"
     s.file_path = "nobe"
+    s.save
 
     s = Sheet.new
     s.email = "cool@thing.com"
     s.title = "Yeeesh!"
     s.description = "Thing thang bing bang!"
     s.file_path = "AAAAH"
+    s.save
   end
 
 
-  it 'should not allow requests to /sell' do
-    visit '/sell'
+  it 'should not allow requests to /seller_dashboard' do
+    visit '/seller_dashboard'
     expect(page).to have_current_path("/")
   end
 
@@ -88,9 +90,9 @@ describe 'When Seller, Music Sheet' do
   end
 
 
-  it 'should allow seller to view their uploaded music on /sell' do
-    visit '/sell'
-    s = Sheet.all(email: "seller@sell.com")
+  it 'should allow seller to view their uploaded music on /seller_dashboard' do
+    visit '/seller_dashboard'
+    s = Sheet.all(email: @u.email)
     s.each do |s|
       expect(page.body).to include(s.title)
     end

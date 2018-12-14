@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+
 gem 'sinatra'
 gem 'data_mapper'
 gem 'sinatra-flash'
@@ -16,8 +17,8 @@ group :test do
 end
 
 group :development do
-  gem "sqlite3-ruby"
-  gem "dm-sqlite-adapter"
+  gem 'sqlite3-ruby'
+  gem 'dm-sqlite-adapter'
 end
 
 group :production do

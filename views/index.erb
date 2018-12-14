@@ -1,67 +1,61 @@
+<style type="text/css" scoped>
+  .jumbotron-sheet {
+    padding: 12em 0em;
+    margin-bottom: 0px;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("img/index-bg.jpg");
+    background-position: 0% 25%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: white;
+    text-align: center;
+  }
 
-<img src="https://images.pexels.com/photos/164821/pexels-photo-164821.jpeg" class="img-fluid" alt="Responsive image" style="max-height: 500pt">
+  .my-4-sheet {
+    border-color: white;
+  }
 
-<div class="jumbotron">
+  .media{
+    padding: 0.5em 0em;
+  }
+</style>
+
+<div id="thing" class="jumbotron jumbotron-sheet">
   <div class="container">
-
-      <% if current_user %>
-        <% if current_user.role == 1 %>
-        	<h1 class="display-3">Hello, Musicians!</h1>
-          <p>Access your collection or find more music to add to it!</p>
-          <p><a class="btn btn-primary btn-lg" href="/storeroom" role="button">Owned music</a></p>
-          <p><a class="btn btn-primary btn-lg" href="/finder" role="button">Find music</a></p>
-        <% elsif current_user.role == 2 %>
-          <h1 class="display-3">Welcome, Lincenser!</h1>
-          <p>Manage your portfolio, upload new sheets, and look at overall sell history.</p>
-          <p><a class="btn btn-primary btn-lg" href="/sell" role="button">Uploaded content</a></p>
-          <p><a class="btn btn-primary btn-lg" href="/upload_music" role="button">Upload new sheets</a></p>
-          <p><a class="btn btn-primary btn-lg" href="/sell_history" role="button">Sell history</a></p>
-        <% else %>
-          <p>There is a glitch in the database or you are an admin</p>
-        <% end %> 
-      <% else %>
-      	<h1 class="display-4">Welcome to Music Sheet!</h1>
-        <p class="lead">Find the music you never knew you wanted to play.</p>
-        <hr class="my-4">
-        <p>
-          Music Sheet provides a way for Musicians and Composers to work closer
-          together, skipping the middle man. Upload you composition here, buy
-          new music and support your favorite composer here!
-        </p>
-      <% end %>
-
+    <h1 class="display-1">Music Sheet</h1>
+    <p class="lead">Find music you never knew you wanted to play</p>
   </div>
 </div>
 
-<div class="container">
-  <div class="media">
-    <div class="media-body">
-      <h5 class="mt-0">Find the latest compositions</h5>
-      Find the latest music as soon as they are finished! With Music Sheet,
-      you don't have to wait weeks for delivery!
+<div class="norm">
+  <div class="container">
+    <p style="padding: 2em 0em 0em 0em">
+      Music Sheet provides a way for Musicians and Composers to work closer
+      together, skipping the middle man. Upload you composition here, buy
+      new music and support your favorite composer here!
+    </p>
+
+    <div class="media">
+      <div class="media-body">
+        <h5 class="mt-0">Find the latest compositions</h5>
+        Find the latest music as soon as they are finished! With Music Sheet,
+        you don't have to wait weeks for delivery!
+      </div>
+    </div>
+
+    <div class="media">
+      <div class="media-body">
+        <h5 class="mt-0">Cost Efficient Music Production</h5>
+        Making an impact as a new composer is always rather difficult. With Music
+        Sheet, you only get charged for what you sell!
+      </div>
+    </div>
+
+    <div class="media">
+      <div class="media-body">
+        <h5 class="mt-0">Blah blah blah</h5>
+        Blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah
+        blah blah, blah blah blah blah blah blah!
+      </div>
     </div>
   </div>
-
-  <br>
-
-  <div class="media">
-    <div class="media-body">
-      <h5 class="mt-0">Cost Efficient Music Production</h5>
-      Making an impact as a new composer is always rather difficult. With Music
-      Sheet, you only get charged for what you sell!
-    </div>
-  </div>
-
-  <br>
-
-  <div class="media">
-    <div class="media-body">
-      <h5 class="mt-0">Blah blah blah</h5>
-      Blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah
-      blah blah, blah blah blah blah blah blah!
-    </div>
-  </div>
-
-  <br>
-
 </div>

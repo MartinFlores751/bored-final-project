@@ -170,5 +170,20 @@ describe 'Music Sheet' do
     end
   end
 
+  it 'should redirect logged in users from / to /dashboard' do
+    page.set_rack_session(user_id: @u.id)
 
+    visit '/'
+
+    expect(page).to have_current_path('/dashboard')
+  end
+
+
+  it 'should redirect logged in users from / to /dashboard' do
+    page.set_rack_session(user_id: @sell.id)
+
+    visit '/'
+
+    expect(page).to have_current_path('/seller_dashboard')
+  end
 end

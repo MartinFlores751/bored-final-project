@@ -1,11 +1,19 @@
+# ///////////////////////////
+# Requires | Gems, DBs, Funcs
+# ///////////////////////////
 require "sinatra"
-require_relative "authentication.rb"
-require_relative "sheet.rb"
-require_relative "history.rb"
-require_relative "simple_tokenizer.rb"
 require "sinatra/flash"
 
+require_relative "sheet.rb"
+require_relative "history.rb"
 
+require_relative "authentication.rb"
+require_relative "simple_tokenizer.rb"
+
+
+# ////////////////////////
+# IGNORE | Database Config
+# ////////////////////////
 if ENV['DATABASE_URL']
   DataMapper::setup(:default, ENV['DATABASE_URL'] || 'postgres://localhost/mydb')
 else
@@ -18,6 +26,9 @@ Sheet.auto_upgrade!
 History.auto_upgrade!
 
 
+# ///////////////////////////////
+# IGNORE | Default Database Users
+# ///////////////////////////////
 if User.all(role: 3).count == 0
   u = User.new
   u.email = "admin@admin.com"
@@ -26,7 +37,6 @@ if User.all(role: 3).count == 0
   u.save
 end
 
-#Default users and default sheet for testing purposes
 if User.all(email: "default@license.com").count == 0
   u = User.new
   u.email = "default@license.com"
@@ -53,57 +63,49 @@ if User.all(email: "default@customer.com").count == 0
 end
 
 
-# Landing page
+# //////////////////////////
+# Request Handlers | General
+# //////////////////////////
 get "/" do
   #test function for simple_tokenizer.rb uncomment to see the console print
   #test_func
   erb :index
 end
 
-# User Dashboard
+
+# ///////////////////////
+# Request Handlers | User
+# ///////////////////////
 get "/dashboard" do
   erb :dashboard
 end
 
-# Seller Dashboard
-get "/sell" do
-  if current_user.role == 1
-    redirect "/"
-  else
-    s = Sheet.all(email: "seller@sell.com")
-    return s.to_json
-    #erb :sell
-  end
-end
-
-# Search for sellers in seller DB
 get "/search" do
-  s = Sheet.all
-	return s.to_json
+  @s = Sheet.all
   erb :finder
 end
 
-# ???
-get "/storeroom" do
-  return "?"
-end
-
-# Placeholder
 get "/find_accountzoom" do
   erb :zoom_tmp
 end
 
-# Buy the current item
 get "/purchase" do
   erb :purchase
 end
 
-# ???
-get "/manage" do
-  return "?"
+
+# /////////////////////////
+# Request Handlers | Seller
+# /////////////////////////
+get "/seller_dashboard" do
+  if current_user.role == 1
+    redirect "/"
+  else
+    @s = Sheet.all(email: current_user.email)
+    erb :sell
+  end
 end
 
-# Only to seller
 get "/upload_music" do
   if current_user.role == 1
     redirect "/"
@@ -112,29 +114,38 @@ get "/upload_music" do
   end
 end
 
-
 post "/upload_music" do
-  if current_user && current_user.role == 1
-  redirect "/"
-  elsif current_user.role == 2
-  email = current_user.email
-  title = params["title"]
-  description = params["description"]
-  file = params["file"]
-  if email && title && description && file
-    s = Sheet.new
-    s.email = email
-    s.title = title
-    s.description = description
-   	s.file_path = file
-    s.save
+  if current_user && current_user.role == 2
+    email = current_user.email
+    title = params[:title]
+    description = params[:description]
+    file = params[:file]
+
+    if title && description && file
+      s = Sheet.new
+
+      s.email = email
+      s.title = title
+      s.description = description
+      s.file_path = file
+
+      s.save
+    end
   end
 end
+
+
+# /////////////////////////////
+# Left Overs (AKA WTF is this?)
+# /////////////////////////////
+get "/storeroom" do
+  return "?"
+end
+
+get "/manage" do
+  return "?"
 end
 
 get "/sell_history" do
-
-end
-get "/seller_dashboard" do
 
 end

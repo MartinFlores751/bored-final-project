@@ -18,3 +18,11 @@ describe Sheet do
   it { should have_property :created_at }
   it { should have_property :file_path }
 end
+
+
+describe History do
+  it { should have_property :id }
+  it { should have_property :sheet_id }
+  it { should have_property :created_at }
+  it { should have_property :charge }
+end
