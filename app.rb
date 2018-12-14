@@ -84,28 +84,18 @@ end
 # Request Handlers | User
 # ///////////////////////
 get "/dashboard" do
- if (!current_user && (current_user.role == 1 || current_user.role == 3))
-  	redirect '/'
-else
-	@h = History.all(buyer: current_user.id)
-	#what i want but cant figure out
-	#@s = Sheet.all(id: h.sheet_id)
-	@s = Sheet.all
-  erb :dashboard
-  return @s.to_json
-end
+  if (!current_user && (current_user.role == 1 || current_user.role == 3))
+    redirect '/'
+  else
+    @h = History.all(buyer: current_user.id)
+    erb :dashboard
+  end
 end
 
 get "/search" do
   authenticate!
   @s = Sheet.all
   erb :finder
-  return @s.to_json
-end
-
-get "/find_accountzoom" do
-  authenticate!
-  erb :zoom_tmp
 end
 
 get "/purchase" do
@@ -172,6 +162,7 @@ get "/storeroom" do
   return "?"
 end
 
-
-
-
+get "/find_accountzoom" do
+  authenticate!
+  erb :zoom_tmp
+end

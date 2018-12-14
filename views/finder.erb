@@ -1,6 +1,6 @@
 <div class="container">
-	<h1>Dashboard for this guy</h1>
-	<p>Blah blah blah find music.</p>
-	<p><a class="btn btn-primary btn-lg" href="/find_accountzoom" role="button">Spuds Mccenzy account</a></p>
-	<p><a class="btn btn-primary btn-lg" href="/purchase" role="button">Buy song now</a></p>
+	<p>Here are some charts available for purchase!!!</p>
+	<% @s.each do |s| %>
+		<p><%= s.title %></p>
+	<% end %>
 </div>

@@ -1,6 +1,7 @@
 <div class="container">
   <p>Here are the charts that you own:</p>
-  <% @h.each do |h| %>
-    <p>THING</p>
+  <% @h.each do |h|
+     s = Sheet.get(h.sheet_id)%>
+    <p><%= s.title %></p>
   <% end %>
 </div>
