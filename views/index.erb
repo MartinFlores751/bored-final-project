@@ -5,10 +5,20 @@
   <div class="container">
 
       <% if current_user %>
-      	<h1 class="display-3">Hello, Musicians!</h1>
-        <p>This is the staring point to our online music sheet site.</p>
-        <p><a class="btn btn-primary btn-lg" href="/storeroom" role="button">Owned music</a></p>
-        <p><a class="btn btn-primary btn-lg" href="/finder" role="button">Find music</a></p>
+        <% if current_user.role == 1 %>
+        	<h1 class="display-3">Hello, Musicians!</h1>
+          <p>Access your collection or find more music to add to it!</p>
+          <p><a class="btn btn-primary btn-lg" href="/storeroom" role="button">Owned music</a></p>
+          <p><a class="btn btn-primary btn-lg" href="/finder" role="button">Find music</a></p>
+        <% elsif current_user.role == 2 %>
+          <h1 class="display-3">Welcome, Lincenser!</h1>
+          <p>Manage your portfolio, upload new sheets, and look at overall sell history.</p>
+          <p><a class="btn btn-primary btn-lg" href="/sell" role="button">Uploaded content</a></p>
+          <p><a class="btn btn-primary btn-lg" href="/upload_music" role="button">Upload new sheets</a></p>
+          <p><a class="btn btn-primary btn-lg" href="/sell_history" role="button">Sell history</a></p>
+        <% else %>
+          <p>There is a glitch in the database or you are an admin</p>
+        <% end %> 
       <% else %>
       	<h1 class="display-4">Welcome to Music Sheet!</h1>
         <p class="lead">Find the music you never knew you wanted to play.</p>

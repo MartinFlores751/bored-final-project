@@ -114,3 +114,7 @@ post "/upload_music" do
   end
 end
 end
+
+get "/sell_history" do 
+
+end
