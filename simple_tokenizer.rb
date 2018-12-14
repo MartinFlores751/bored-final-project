@@ -18,7 +18,8 @@ def grab_items(lib)
 	else
 		collection = Array.new
 		lib.split(',').each do |x|
-			puts x
+			#uncomment puts to see all the numbers the function is successfully parsing
+			#puts x
 			collection.push(x)
 		end
 	end
@@ -41,9 +42,32 @@ def add_item(sheetID)
 		u.save
 		return "save successful"
 	else
+		checkLibrary = grab_items(u.library)
+		isPresent = false
+		checkLibrary.each do |x|
+			isPresent = true if x.to_i == sheetID
+		end
+		return "number is present already" if isPresent == true
 		u.library += "," + sheetID.to_s
 		u.save
 		return "save successful"
+	end
+end
+
+#just a quick test function that calls some actions and puts to console
+#don't need to use
+#just keeping it here for now in case something gets buggy
+def test_func
+	puts("add_item test")
+	add_item(1)
+	add_item(2)
+	add_item(3)
+	u = current_user
+	testLibArray = grab_items(u.library)
+	puts("size of grab_items array is:")
+	puts(testLibArray.length)
+	testLibArray.each do |x|
+		puts(Sheet.first(:id => x.to_i).title.to_s)
 	end
 end
 

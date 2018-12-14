@@ -2,6 +2,7 @@ require "sinatra"
 require_relative "authentication.rb"
 require_relative "sheet.rb"
 require_relative "history.rb"
+require_relative "simple_tokenizer.rb"
 require "sinatra/flash"
 
 
@@ -54,6 +55,8 @@ end
 
 # Landing page
 get "/" do
+  #test function for simple_tokenizer.rb uncomment to see the console print
+  #test_func
   erb :index
 end
 
