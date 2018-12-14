@@ -135,14 +135,14 @@ describe 'Music Sheet' do
 
     fill_in 'title', with: "Mozart PT.2"
     fill_in 'description', with: "This is an old song!"
-    fill_in 'file', with: "None"
+    attach_file('file', File.absolute_path('./spec/unit/test.pdf'))
 
-    click_button 'Submit'
+    click_button 'Upload'
 
     s = Sheet.last
     expect(s.title).to eq("Mozart PT.2")
     expect(s.description).to eq("This is an old song!")
-    # expect(s.file_path).to eq("") Need to find out file path!!!
+    expect(s.file_path).to eq("test.pdf")
     expect(s.email).to eq(@admin.email)
   end
 
