@@ -112,9 +112,9 @@ get "/seller_dashboard" do
   if current_user && (current_user.role == 2 || current_user.role == 3)
     @s = Sheet.all(email: current_user.email)
     erb :sell
-else
-	redirect "/"
-end
+  else
+    redirect "/"
+  end
 end
 
 get "/upload_music" do
@@ -155,7 +155,7 @@ end
 
 # query for all history transactions items under a licenser's library
 get "/Seller_history" do
-return "?"
+  return "?"
 end
 
 # /////////////////////////////
