@@ -84,8 +84,10 @@ end
 # Request Handlers | User
 # ///////////////////////
 get "/dashboard" do
-  authenticate!
- if current_user
+  authenticate_customer!
+ if !current_user
+  	redirect '/'
+else
 	@h = History.all(buyer: current_user.id)
 	#what i want but cant figure out
 	#@s = Sheet.all(id: h.sheet_id)
@@ -96,19 +98,19 @@ end
 end
 
 get "/search" do
-  authenticate!
+  authenticate_customer!
   @s = Sheet.all
   erb :finder
   return @s.to_json
 end
 
 get "/find_accountzoom" do
-  authenticate!
+  authenticate_customer!
   erb :zoom_tmp
 end
 
 get "/purchase" do
-  authenticate!
+  authenticate_customer!
   erb :purchase
 end
 
@@ -117,7 +119,7 @@ end
 # Request Handlers | Seller
 # /////////////////////////
 get "/seller_dashboard" do
- 	authenticate!
+ 	authenticate_lincenser!
   if current_user && current_user.role == 2
     @s = Sheet.all(email: current_user.email)
     erb :sell
@@ -126,7 +128,7 @@ get "/seller_dashboard" do
 end
 
 get "/upload_music" do
-  authenticate!
+  authenticate_licenser!
   if current_user.role == 1
     redirect "/"
   elsif current_user.role == 2
