@@ -1,17 +1,57 @@
+
+<img src="https://images.pexels.com/photos/164821/pexels-photo-164821.jpeg" class="img-fluid" alt="Responsive image" style="max-height: 500pt">
+
 <div class="jumbotron">
   <div class="container">
 
-      <% if current_user && current_user.role ==1 %>
+      <% if current_user %>
       	<h1 class="display-3">Hello, Musicians!</h1>
         <p>This is the staring point to our online music sheet site.</p>
         <p><a class="btn btn-primary btn-lg" href="/storeroom" role="button">Owned music</a></p>
         <p><a class="btn btn-primary btn-lg" href="/finder" role="button">Find music</a></p>
       <% else %>
-      	<h1 class="display-4">Welcome to #{NAME_HERE}</h1>
+      	<h1 class="display-4">Welcome to Music Sheet!</h1>
         <p class="lead">Find the music you never knew you wanted to play.</p>
         <hr class="my-4">
-        <p>TEST TEST TEST TEST TEST</p>
+        <p>
+          Music Sheet provides a way for Musicians and Composers to work closer
+          together, skipping the middle man. Upload you composition here, buy
+          new music and support your favorite composer here!
+        </p>
       <% end %>
 
   </div>
+</div>
+
+<div class="container">
+  <div class="media">
+    <div class="media-body">
+      <h5 class="mt-0">Find the latest compositions</h5>
+      Find the latest music as soon as they are finished! With Music Sheet,
+      you don't have to wait weeks for delivery!
+    </div>
+  </div>
+
+  <br>
+
+  <div class="media">
+    <div class="media-body">
+      <h5 class="mt-0">Cost Efficient Music Production</h5>
+      Making an impact as a new composer is always rather difficult. With Music
+      Sheet, you only get charged for what you sell!
+    </div>
+  </div>
+
+  <br>
+
+  <div class="media">
+    <div class="media-body">
+      <h5 class="mt-0">Blah blah blah</h5>
+      Blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah
+      blah blah, blah blah blah blah blah blah!
+    </div>
+  </div>
+
+  <br>
+
 </div>
