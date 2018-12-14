@@ -46,6 +46,13 @@ describe 'When Customer, Music Sheet' do
     s.description = "Thing thang bing bang!"
     s.file_path = "AAAAH"
     s.save
+
+    h = History.new
+    h.sheet_id = s.id
+    h.charge = 200
+    h.buyer = @u.id
+    h.seller = 200
+    h.save
   end
 
 
@@ -58,6 +65,16 @@ describe 'When Customer, Music Sheet' do
   it 'should not allow requests to /upload_music' do
     visit '/upload_music'
     expect(page).to have_current_path("/dashboard")
+  end
+
+
+  it 'should allow user to view purchased music at /dashboard' do
+    visit '/dashboard'
+    h = History.all(buyer: @u.id)
+    h.each do |h|
+      s = Sheet.get(h.sheet_id)
+      expect(page.body).to include(s.title)
+    end
   end
 
 end
