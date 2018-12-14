@@ -1,3 +1,25 @@
+</br>
+</br>
+</br>
 <div class="container">
-	<h1>upload your music here</h1>
-  </div>
+	<form action="/upload_music" method="POST">
+
+		
+		<div class="form-group">
+			<label for="title">title</label>
+			<input type="title" class="form-control" placeholder="title" name="title">
+		</div>
+
+		<div class="form-group">
+			<label for="description">description</label>
+			<input type="description" class="form-control" placeholder="description" name="description">
+		</div>
+
+		<div class="form-group">
+			<label for="file">file</label>
+			<input type="file" class="form-control" placeholder="file" name="file">
+		</div>
+
+		<button type="submit" class="btn btn-primary" value="Create">Create</button>
+	</form>
+</div>
