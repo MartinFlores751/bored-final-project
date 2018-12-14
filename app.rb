@@ -85,9 +85,7 @@ end
 # ///////////////////////
 get "/dashboard" do
   authenticate!
- if !current_user
-  	redirect '/'
-else
+ if current_user
 	@h = History.all(buyer: current_user.id)
 	#what i want but cant figure out
 	#@s = Sheet.all(id: h.sheet_id)
@@ -124,8 +122,6 @@ get "/seller_dashboard" do
     @s = Sheet.all(email: current_user.email)
     erb :sell
     return @s.to_json
-  else
-    redirect "/"
   end
 end
 
