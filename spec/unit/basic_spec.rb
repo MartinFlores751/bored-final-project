@@ -143,7 +143,7 @@ describe 'Music Sheet' do
     expect(s.title).to eq("Mozart PT.2")
     expect(s.description).to eq("This is an old song!")
     expect(s.file_path).to eq("test.pdf")
-    expect(s.email).to eq(@admin.email)
+    expect(s.email).to eq(@sell.email)
   end
 
 

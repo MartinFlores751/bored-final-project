@@ -57,6 +57,8 @@ end
 
 # Search for sellers in seller DB
 get "/search" do
+  s = Sheet.all
+	return s.to_json
   erb :finder
 end
 
@@ -89,32 +91,29 @@ elsif current_user.role == 2
 end
 end
 
-get "/seller_dashboard" do
-  return "?"
-end
+
 post "/upload_music" do
-  #email = params["email"]
   if current_user && current_user.role == 1
   redirect "/"
   elsif current_user.role == 2
+  email = current_user.email
   title = params["title"]
   description = params["description"]
   file = params["file"]
-  #created_at = params["created_at"]
-  #file_path = params["file_path"]
-  if title && description && file
+  if email && title && description && file
     s = Sheet.new
-  #  s.email = email
+    s.email = email
     s.title = title
     s.description = description
-   s.file_path = file
-   # s.created_at = created_at
-    #s.file_path = file_path
+   	s.file_path = file
     s.save
   end
 end
 end
 
 get "/sell_history" do 
+
+end
+get "/seller_dashboard" do
 
 end
