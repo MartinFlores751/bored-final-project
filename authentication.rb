@@ -80,15 +80,18 @@ def authenticate!
 end
 
 def authenticate_customer!
-	authenticate!
-	if (current_user.role != 1 || current_user.role != 3)
+	if !current_user
+		redirect "/login"
+	elsif (current_user.role != 1 || current_user.role != 3)
 		redirect "/"
 	end
 end
 
 def authenticate_lincenser!
-	authenticate!
-	if (current_user.role != 2 || current_user.role != 3)
+	if !current_user
+		redirect "/login"
+	
+	elsif (current_user.role != 2 || current_user.role != 3)
 		redirect "/"
 	end
 end

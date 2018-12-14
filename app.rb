@@ -84,8 +84,7 @@ end
 # Request Handlers | User
 # ///////////////////////
 get "/dashboard" do
-  authenticate_customer!
- if !current_user
+ if (!current_user && (current_user.role == 1 || current_user.role == 3))
   	redirect '/'
 else
 	@h = History.all(buyer: current_user.id)
@@ -98,19 +97,19 @@ end
 end
 
 get "/search" do
-  authenticate_customer!
+  authenticate!
   @s = Sheet.all
   erb :finder
   return @s.to_json
 end
 
 get "/find_accountzoom" do
-  authenticate_customer!
+  authenticate!
   erb :zoom_tmp
 end
 
 get "/purchase" do
-  authenticate_customer!
+  authenticate!
   erb :purchase
 end
 
@@ -119,8 +118,7 @@ end
 # Request Handlers | Seller
 # /////////////////////////
 get "/seller_dashboard" do
- 	authenticate_lincenser!
-  if current_user && current_user.role == 2
+  if current_user && (current_user.role == 2 || current_user.role == 3)
     @s = Sheet.all(email: current_user.email)
     erb :sell
     return @s.to_json
@@ -130,7 +128,6 @@ get "/seller_dashboard" do
 end
 
 get "/upload_music" do
-  authenticate_licenser!
   if current_user.role == 1
     redirect "/"
   elsif current_user.role == 2
@@ -158,6 +155,15 @@ post "/upload_music" do
   end
 end
 
+# query for all sheet music under a lincenser's library
+get "/manage" do
+  return "?"
+end
+
+# query for all history transactions items under a licenser's library
+get "/sell_history" do
+
+end
 
 # /////////////////////////////
 # Left Overs (AKA WTF is this?)
@@ -166,10 +172,6 @@ get "/storeroom" do
   return "?"
 end
 
-get "/manage" do
-  return "?"
-end
 
-get "/sell_history" do
 
-end
+
