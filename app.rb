@@ -100,6 +100,7 @@ post "/upload_music" do
     s.save
   end
 end
+end
 
 get "/sell_history" do
 
