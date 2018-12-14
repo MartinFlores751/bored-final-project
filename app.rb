@@ -1,6 +1,7 @@
 require "sinatra"
 require_relative "authentication.rb"
 require_relative "sheet.rb"
+require_relative "history.rb"
 require "sinatra/flash"
 
 #the following urls are included in authentication.rb
@@ -25,6 +26,7 @@ end
 DataMapper.finalize
 User.auto_upgrade!
 Sheet.auto_upgrade!
+History.auto_upgrade!
 
 if User.all(role: 3).count == 0
 	u = User.new
