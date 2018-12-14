@@ -18,9 +18,16 @@
           </li>
         <% end %>
 
-        <li class="nav-item">
-          <a class="nav-link" href="/search">Find new music</a>
-        </li>
+        <% if current_user.role == 1 %>
+          <li class="nav-item">
+            <a class="nav-link" href="/search">Find new music</a>
+          </li>
+        <% elsif current_user.role == 2 %>
+          <li class="nav-item">
+            <a class="nav-link" href="/sell_history">Sales history</a>
+          </li>
+        <% end %>
+
         <li class="nav-item">
           <a class="nav-link" href="/logout">Logout</a>
         </li>
@@ -28,6 +35,7 @@
         <li class="nav-item">
           <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
         </li>
+
         <% if !current_user %>
         <li class="nav-item">
           <a class="nav-link" href="/login">Login</a>

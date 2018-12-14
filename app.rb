@@ -81,6 +81,7 @@ end
 
 get "/purchase" do
   authenticate!
+  puts(params[:songID])
   if current_user.role ==1
   erb :purchaseuser
 elsif current_user.role ==2
@@ -88,7 +89,14 @@ elsif current_user.role ==2
 end
 end
 
-post '/charge' do
+post '/selectSong' do
+  #puts("puchased!")
+  #puts(params[:songID])
+  redirect "/purchase"
+end
+
+post '/chargeuser' do
+  puts(params[:songID])
   # Amount in cents
   if current_user.role ==1
   	@amount = 1000
@@ -113,9 +121,21 @@ post '/charge' do
     #This is where you create a history object
     #you should only ever create an object HERE
     #params could possibly carry it
+    u = History.new
+    u.sheet_id = params[:songID].to_i
+    u.charge = "$10.00"
+    u.buyer = current_user.email
+    u.seller = params[:owner]
+    u.save
   elsif current_user.role ==2
       #add licenser sub at the end if time permits
+    puts("Subscribed wooooooo")
   end
+  redirect "/success"
+end
+
+get '/success' do
+  erb :success
 end
 # /////////////////////////
 # Request Handlers | Seller
@@ -159,25 +179,14 @@ post "/upload_music" do
   end
 end
 
-
-
-# query for all sheet music under a licenser's library
-get "/manage" do
-  erb :manage
-end
-
-# query for all history transactions items under a licenser's library
-get "/Seller_history" do
-  return "?"
+get "/sell_history" do
+  @s = History.all(:seller => current_user.email)
+  erb :history
 end
 
 # /////////////////////////////
 # Left Overs (AKA WTF is this?)
 # /////////////////////////////
-get "/storeroom" do
-  return "?"
-end
-
 get "/find_accountzoom" do
   authenticate!
   erb :zoom_tmp

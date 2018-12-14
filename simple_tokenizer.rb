@@ -106,6 +106,24 @@ def set_up
 		  s.save
 		end
 
+		if Sheet.all(title: "default title 4").count == 0
+		  s = Sheet.new
+		  s.email = "default@license.com"
+		  s.title = "default title 4"
+		  s.description = "default description 4"
+		  s.file_path = "default path"
+		  s.save
+		end
+
+		if Sheet.all(title: "default title 5").count == 0
+		  s = Sheet.new
+		  s.email = "default@license.com"
+		  s.title = "default title 5"
+		  s.description = "default description 5"
+		  s.file_path = "default path"
+		  s.save
+		end
+
 		if User.all(email: "default@customer.com").count == 0
 		  u = User.new
 		  u.email = "default@customer.com"

@@ -1,8 +1,8 @@
 <div class="container" >
-  <p>Here's the charts you have uploaded!</p>
+  <h1>Here's the charts you have uploaded!</h1>
   <% @s.each do |s| %>
-    <p><%= s.title %></p>
-    <p><%= s.description %></p>
-    <p><%= s.created_at.to_s %></p>
+    <h3><%= s.title %></h3>
+    <%= s.description %><br/>
+    <%= s.created_at.to_s %><br/><br/>
   <% end %>
 </div>
