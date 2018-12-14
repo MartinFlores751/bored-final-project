@@ -84,18 +84,39 @@ end
 # Request Handlers | User
 # ///////////////////////
 get "/dashboard" do
+<<<<<<< HEAD
   if (!current_user && (current_user.role == 1 || current_user.role == 3))
     redirect '/'
   else
     @h = History.all(buyer: current_user.id)
     erb :dashboard
   end
+=======
+	authenticate!
+ if current_user.role == 1
+  	@h = History.all(buyer: current_user.id)
+	#what i want but cant figure out
+	#@s = Sheet.all(id: h.sheet_id)
+	@s = Sheet.all
+  erb :dashboard
+else
+	redirect "/seller_dashboard"
+end
+>>>>>>> origin/devel
 end
 
 get "/search" do
   authenticate!
   @s = Sheet.all
   erb :finder
+<<<<<<< HEAD
+=======
+end
+
+get "/find_accountzoom" do
+  authenticate!
+  erb :zoom_tmp
+>>>>>>> origin/devel
 end
 
 get "/purchase" do
@@ -108,18 +129,19 @@ end
 # Request Handlers | Seller
 # /////////////////////////
 get "/seller_dashboard" do
+  authenticate!
   if current_user && (current_user.role == 2 || current_user.role == 3)
     @s = Sheet.all(email: current_user.email)
     erb :sell
-    return @s.to_json
-  else
-    redirect "/"
-  end
+else 
+	redirect "/"
+end
 end
 
 get "/upload_music" do
+  authenticate!
   if current_user.role == 1
-    redirect "/"
+    redirect "/dashboard"
   elsif current_user.role == 2
     erb :upload_music
   end
@@ -145,14 +167,16 @@ post "/upload_music" do
   end
 end
 
+
+
 # query for all sheet music under a lincenser's library
 get "/manage" do
   return "?"
 end
 
 # query for all history transactions items under a licenser's library
-get "/sell_history" do
-
+get "/Seller_history" do
+return "?"
 end
 
 # /////////////////////////////
