@@ -46,7 +46,13 @@ end
 
 # Seller Dashboard
 get "/sell" do
-	erb :sell
+	if current_user.role == 1
+  redirect "/"
+else
+	s = Sheet.all(email: "seller@sell.com")
+	return s.to_json
+	#erb :sell
+end
 end
 
 # Search for sellers in seller DB
@@ -76,5 +82,32 @@ end
 
 # Only to seller
 get "/upload_music" do
+ if current_user.role == 1
+  redirect "/"
+elsif current_user.role == 2
  erb :upload_music
+end
+end
+
+post "/upload_music" do
+  #email = params["email"]
+  if current_user.role == 1
+  redirect "/"
+  elsif current_user.role == 2
+  title = params["title"]
+  description = params["description"]
+  file = params["file"]
+  #created_at = params["created_at"]
+  #file_path = params["file_path"]
+  if title && description && file
+    s = Sheet.new
+  #  s.email = email
+    s.title = title
+    s.description = description
+   s.file_path = file
+   # s.created_at = created_at
+    #s.file_path = file_path
+    s.save
+  end
+end
 end

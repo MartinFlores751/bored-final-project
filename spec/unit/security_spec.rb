@@ -41,12 +41,12 @@ describe 'When Customer, Music Sheet' do
 
   it 'should not allow GET requests to /upload_music' do
     visit '/upload_music'
-    exepct(page).to have_current_path("/")
+    expect(page).to have_current_path("/")
   end
 
 
   it 'should not allow POST requests to /upload_music' do
-    page.driver.browser.post('/sell')
+    page.driver.browser.post('/upload_music')
 
     expect(page).to have_current_path("/")
   end
