@@ -2,5 +2,7 @@
   <p>Here's the charts you have uploaded!</p>
   <% @s.each do |s| %>
     <p><%= s.title %></p>
+    <p><%= s.description %></p>
+    <p><%= s.created_at.to_s %></p>
   <% end %>
 </div>

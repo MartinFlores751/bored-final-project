@@ -31,8 +31,7 @@ end
 #OR
 #user.library = ""
 #will append a new number to the string
-def add_item(sheetID)
-	u = current_user
+def add_item(sheetID, u = current_user)
 	if u.nil?
 		return "user nonexistant"
 	end
@@ -69,6 +68,55 @@ def test_func
 	testLibArray.each do |x|
 		puts(Sheet.first(:id => x.to_i).title.to_s)
 	end
+end
+
+def set_up
+		if User.all(email: "default@license.com").count == 0
+		  u = User.new
+		  u.email = "default@license.com"
+		  u.password = "default"
+		  u.role = 2
+		  u.save
+		end
+
+		if Sheet.all(title: "default title").count == 0
+		  s = Sheet.new
+		  s.email = "default@license.com"
+		  s.title = "default title"
+		  s.description = "default description"
+		  s.file_path = "default path"
+		  s.save
+		end
+
+		if Sheet.all(title: "default title 2").count == 0
+		  s = Sheet.new
+		  s.email = "default@license.com"
+		  s.title = "default title 2"
+		  s.description = "default description 2"
+		  s.file_path = "default path"
+		  s.save
+		end
+
+		if Sheet.all(title: "default title 3").count == 0
+		  s = Sheet.new
+		  s.email = "default@license.com"
+		  s.title = "default title 3"
+		  s.description = "default description 3"
+		  s.file_path = "default path"
+		  s.save
+		end
+
+		if User.all(email: "default@customer.com").count == 0
+		  u = User.new
+		  u.email = "default@customer.com"
+		  u.password = "default"
+		  u.role = 1
+		  u.save
+		end
+		u = User.first(:email => "default@customer.com")
+		add_item(Sheet.first(:title => "default title").id.to_i, u)
+		add_item(Sheet.first(:title => "default title 2").id.to_i, u)
+		add_item(Sheet.first(:title => "default title 3").id.to_i, u)
 end
 
 

@@ -42,38 +42,12 @@ if User.all(role: 3).count == 0
   u.save
 end
 
-if User.all(email: "default@license.com").count == 0
-  u = User.new
-  u.email = "default@license.com"
-  u.password = "default"
-  u.role = 2
-  u.save
-end
-
-if Sheet.all(title: "default title").count == 0
-  s = Sheet.new
-  s.email = "default@license.com"
-  s.title = "default title"
-  s.description = "default description"
-  s.file_path = "default path"
-  s.save
-end
-
-if User.all(email: "default@customer.com").count == 0
-  u = User.new
-  u.email = "default@customer.com"
-  u.password = "default"
-  u.role = 1
-  u.save
-end
-
+set_up
 
 # //////////////////////////
 # Request Handlers | General
 # //////////////////////////
 get "/" do
-  #test function for simple_tokenizer.rb uncomment to see the console print
-  #test_func
   if current_user
     if current_user.role == 1
       redirect '/dashboard'
@@ -92,7 +66,9 @@ get "/dashboard" do
   if (!current_user && (current_user.role == 1 || current_user.role == 3))
     redirect '/'
   else
-    @h = History.all(buyer: current_user.id)
+    #HISTORIES ARE FOR SELLERS ONLY 
+    #@h = History.all(buyer: current_user.id)
+    @s = grab_items(current_user.library)
     erb :dashboard
   end
 end
@@ -118,6 +94,7 @@ post '/charge' do
   	@amount = 1000
   elsif current_user.role ==2
   	@amount = 10000
+  end
   customer = Stripe::Customer.create(
     :email => 'customer@example.com',
     :source  => params[:stripeToken]
@@ -130,7 +107,15 @@ post '/charge' do
     :customer    => customer.id
   )
   #add song to list or give them monthly sub
-end
+  #
+  if current_user.role ==1
+    #simply add song to query
+    #This is where you create a history object
+    #you should only ever create an object HERE
+    #params could possibly carry it
+  elsif current_user.role ==2
+      #add licenser sub at the end if time permits
+  end
 end
 # /////////////////////////
 # Request Handlers | Seller
@@ -176,9 +161,9 @@ end
 
 
 
-# query for all sheet music under a lincenser's library
+# query for all sheet music under a licenser's library
 get "/manage" do
-  return "?"
+  erb :manage
 end
 
 # query for all history transactions items under a licenser's library
