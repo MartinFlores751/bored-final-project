@@ -3,6 +3,7 @@
 # ///////////////////////////
 require "sinatra"
 require "sinatra/flash"
+require "stripe"
 
 require_relative "sheet.rb"
 require_relative "history.rb"
@@ -11,6 +12,10 @@ require_relative "authentication.rb"
 require_relative "simple_tokenizer.rb"
 
 
+set :publishable_key, 'pk_test_CdF9m4DUiyVaF213fTGOWEZT'
+set :secret_key, 'sk_test_Y5GAif7TrBvbDP0Xg2PdBfG6'
+
+Stripe.api_key = settings.secret_key
 # ////////////////////////
 # IGNORE | Database Config
 # ////////////////////////
@@ -100,10 +105,33 @@ end
 
 get "/purchase" do
   authenticate!
-  erb :purchase
+  if current_user.role ==1
+  erb :purchaseuser
+elsif current_user.role ==2
+	erb :purchasecomposer
+end
 end
 
+post '/charge' do
+  # Amount in cents
+  if current_user.role ==1
+  	@amount = 1000
+  elsif current_user.role ==2
+  	@amount = 10000
+  customer = Stripe::Customer.create(
+    :email => 'customer@example.com',
+    :source  => params[:stripeToken]
+  )
 
+  charge = Stripe::Charge.create(
+    :amount      => @amount,
+    :description => 'Sinatra Charge',
+    :currency    => 'usd',
+    :customer    => customer.id
+  )
+  #add song to list or give them monthly sub
+end
+end
 # /////////////////////////
 # Request Handlers | Seller
 # /////////////////////////

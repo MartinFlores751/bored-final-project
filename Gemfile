@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'sinatra'
 gem 'data_mapper'
 gem 'sinatra-flash'
+gem 'stripe'
 
 group :test do
   gem 'rake'
