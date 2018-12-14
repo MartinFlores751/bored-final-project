@@ -58,7 +58,7 @@ if User.all(email: "default@customer.com").count == 0
   u = User.new
   u.email = "default@customer.com"
   u.password = "default"
-  u.role = 2
+  u.role = 1
   u.save
 end
 
@@ -69,6 +69,13 @@ end
 get "/" do
   #test function for simple_tokenizer.rb uncomment to see the console print
   #test_func
+  if current_user
+    if current_user.role == 1
+      redirect '/dashboard'
+    elsif current_user.role == 2
+      redirect '/seller_dashboard'
+    end
+  end
   erb :index
 end
 
@@ -77,6 +84,7 @@ end
 # Request Handlers | User
 # ///////////////////////
 get "/dashboard" do
+  @h = History.all(buyer: current_user.id)
   erb :dashboard
 end
 

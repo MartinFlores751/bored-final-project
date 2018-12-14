@@ -29,5 +29,6 @@ RSpec.configure do |c|
   DataMapper.finalize
   User.auto_migrate!
   Sheet.auto_migrate!
+  History.auto_migrate!
 
 end

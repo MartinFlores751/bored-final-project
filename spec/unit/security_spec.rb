@@ -1,6 +1,20 @@
 require File.expand_path '../../spec_helper.rb', __FILE__
 
 
+describe 'When not logged in' do
+
+  it 'should not allow access to /dashboard' do
+    visit '/dashboard'
+    expect(page).to have_current_path('/')
+  end
+
+  it 'should not allow access to /seller_dashboard' do
+    visit '/seller_dashboard'
+    expect(page).to have_current_path('/')
+  end
+
+end
+
 describe 'When Customer, Music Sheet' do
 
   before(:all) do
@@ -37,13 +51,13 @@ describe 'When Customer, Music Sheet' do
 
   it 'should not allow requests to /seller_dashboard' do
     visit '/seller_dashboard'
-    expect(page).to have_current_path("/")
+    expect(page).to have_current_path("/dashboard")
   end
 
 
   it 'should not allow requests to /upload_music' do
     visit '/upload_music'
-    expect(page).to have_current_path("/")
+    expect(page).to have_current_path("/dashboard")
   end
 
 end

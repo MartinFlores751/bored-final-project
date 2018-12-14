@@ -179,7 +179,7 @@ describe 'Music Sheet' do
   end
 
 
-  it 'should redirect logged in users from / to /dashboard' do
+  it 'should redirect logged in sellers from / to /seller_dashboard' do
     page.set_rack_session(user_id: @sell.id)
 
     visit '/'

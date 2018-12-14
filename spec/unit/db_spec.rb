@@ -25,4 +25,6 @@ describe History do
   it { should have_property :sheet_id }
   it { should have_property :created_at }
   it { should have_property :charge }
+  it { should have_property :buyer }
+  it { should have_property :seller }
 end
