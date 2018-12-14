@@ -1,5 +1,6 @@
 require File.expand_path '../../spec_helper.rb', __FILE__
 
+
 describe 'Music Sheet' do
   before(:all) do
     @admin = User.new
@@ -19,6 +20,13 @@ describe 'Music Sheet' do
     @u.password = "totes"
     @u.role = 1
     @u.save
+
+    s = Sheet.new
+    s.email = "seller@sell.com"
+    s.title = "Fak"
+    s.description = "'Tis music"
+    s.file_path = "NULL"
+    s.save
   end
 
   
@@ -134,7 +142,7 @@ describe 'Music Sheet' do
     s = Sheet.last
     expect(s.title).to eq("Mozart PT.2")
     expect(s.description).to eq("This is an old song!")
-    # expect(s.file_path).to eq("")
+    # expect(s.file_path).to eq("") Need to find out file path!!!
     expect(s.email).to eq(@admin.email)
   end
 
@@ -147,5 +155,20 @@ describe 'Music Sheet' do
     expect(page.status_code).to eq(200)
     expect(page).to have_current_path('/seller_dashboard')
   end
+
+  
+  
+  it 'should allow user to view Sheet Music in /finder' do
+    page.set_rack_session(user_id: @u.id)
+
+    sheet = Sheet.all()
+
+    visit '/finder'
+
+    sheet.each do |s|
+      expect(page.body).to include(s.title)
+    end
+  end
+
   
 end

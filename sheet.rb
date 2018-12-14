@@ -8,4 +8,5 @@ class Sheet
     property :title, String
     property :description, String
     property :created_at, DateTime
+    property :file_path, String
 end
