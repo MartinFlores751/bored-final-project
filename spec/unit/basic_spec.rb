@@ -7,18 +7,21 @@ describe 'Music Sheet' do
     @admin.email = "admin@admin.com"
     @admin.password = "admin"
     @admin.role = 3
+    @admin.subbed = true
     @admin.save
 
     @sell = User.new
     @sell.email = "seller@sell.com"
     @sell.password = "money"
     @sell.role = 2
+    @sell.subbed = true
     @sell.save
 
     @u = User.new
     @u.email = "guy@dude.com"
     @u.password = "totes"
     @u.role = 1
+    @u.subbed = false
     @u.save
 
     s = Sheet.new

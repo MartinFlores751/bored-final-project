@@ -7,6 +7,9 @@ describe User do
   it { should have_property :password }
   it { should have_property :created_at }
   it { should have_property :role }
+  it { should have_property :library }
+  it { should have_property :subbed }
+
 end
 
 

@@ -64,10 +64,10 @@ end
 # Request Handlers | User
 # ///////////////////////
 get "/dashboard" do
-  if (!current_user && (current_user.role == 1 || current_user.role == 3))
+  if !(current_user && (current_user.role == 1 || current_user.role == 3))
     redirect '/'
   else
-    #HISTORIES ARE FOR SELLERS ONLY 
+    #HISTORIES ARE FOR SELLERS ONLY
     #@h = History.all(buyer: current_user.id)
     @s = grab_items(current_user.library)
     erb :dashboard
@@ -84,9 +84,9 @@ post '/chargeuser' do
   puts(params[:songID])
   # Amount in cents
   if current_user.role ==1
-  	@amount = 1000
+    @amount = 1000
   elsif current_user.role ==2
-  	@amount = 10000
+    @amount = 10000
   end
   customer = Stripe::Customer.create(
     :email => 'customer@example.com',
