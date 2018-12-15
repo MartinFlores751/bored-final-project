@@ -22,6 +22,7 @@ describe 'When Customer, Music Sheet' do
     @u.email = "user@user.com"
     @u.password = "user"
     @u.role = 1
+    @u.subbed = false
     @u.save
 
     page.set_rack_session(user_id: @u.id)
@@ -87,6 +88,7 @@ describe 'When Seller, Music Sheet' do
     @u.email = "seller@sell.com"
     @u.password = "money"
     @u.role = 2
+    @u.subbed = true
     @u.save
 
     page.set_rack_session(user_id: @u.id)
