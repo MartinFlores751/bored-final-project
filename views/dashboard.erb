@@ -6,7 +6,7 @@
 	  <% @s.each do |x| %>
 	  	<% v = Sheet.first(:id => x) %>
 	    <div class="card text-white bg-secondary mb-3" style="max-width: 20rem;">	
-	      <img class="card-img-top" src=”img/<%= v.file_path %>”>	
+	      <img class="card-img-top" src="img/<%= v.file_path %>">	
 	      <div class="card-header"><%= v.title %></div>
 	      <div class="card-body">
 	        <h5 class="card-title"><%= v.description %></h5>

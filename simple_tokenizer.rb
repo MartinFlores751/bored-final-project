@@ -84,7 +84,7 @@ def set_up
 		  s.email = "default@license.com"
 		  s.title = "default title"
 		  s.description = "default description"
-		  s.file_path = "default path"
+		  s.file_path = "default1.png"
 		  s.save
 		end
 
@@ -93,7 +93,7 @@ def set_up
 		  s.email = "default@license.com"
 		  s.title = "default title 2"
 		  s.description = "default description 2"
-		  s.file_path = "default path"
+		  s.file_path = "default2.png"
 		  s.save
 		end
 
@@ -102,7 +102,7 @@ def set_up
 		  s.email = "default@license.com"
 		  s.title = "default title 3"
 		  s.description = "default description 3"
-		  s.file_path = "default path"
+		  s.file_path = "default3.jpg"
 		  s.save
 		end
 
@@ -111,7 +111,7 @@ def set_up
 		  s.email = "default@license.com"
 		  s.title = "default title 4"
 		  s.description = "default description 4"
-		  s.file_path = "default path"
+		  s.file_path = "default4.png"
 		  s.save
 		end
 
@@ -120,7 +120,7 @@ def set_up
 		  s.email = "default@license.com"
 		  s.title = "default title 5"
 		  s.description = "default description 5"
-		  s.file_path = "default path"
+		  s.file_path = "default5.png"
 		  s.save
 		end
 

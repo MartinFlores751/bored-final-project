@@ -106,19 +106,25 @@ post '/chargeuser' do
     #This is where you create a history object
     #you should only ever create an object HERE
     #params could possibly carry it
-    add_item(params[:songID])
-    u = History.new
-    u.sheet_id = params[:songID].to_i
-    u.charge = "$10.00"
-    u.buyer = current_user.email
-    u.seller = params[:owner]
-    u.save
+    add_item(params[:songID].to_i)
+
+    x = History.new
+    x.sheet_id = params[:songID].to_i
+    #puts(u.sheet_id.to_s)
+    x.charge = "$10.00"
+    #puts(u.charge)
+    x.buyer = current_user.email.to_s
+    #puts(u.buyer)
+    x.seller = params[:owner]
+    #puts(u.seller)
+    x.save
   elsif current_user.role ==2
     #add licenser sub at the end if time permits
     puts("Subscribed wooooooo")
     u = current_user
     u.subbed = true
     u.save
+    
   end
   redirect "/success"
 end
