@@ -154,19 +154,24 @@ post "/upload_music" do
     email = current_user.email
     title = params[:title]
     description = params[:description]
-    file = params[:file]
+
+    @filename = params[:file][:filename]
+    file = params[:file][:tempfile]
 
     if title && description && file
+      File.open("./public/img/#{@filename}", 'wb') do |f|
+        f.write(file.read)
+      end
       s = Sheet.new
-
       s.email = email
       s.title = title
       s.description = description
-      s.file_path = file
+      s.file_path = @filename
 
       s.save
     end
   end
+  redirect "/"
 end
 
 get "/sell_history" do
