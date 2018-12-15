@@ -1,11 +1,11 @@
 <div class="container">
 	<p>Here are some charts available for purchase!!!</p>
 	<% @s.each do |s| %>
-	<div class="card" style="width: 18rem;">
+	<div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
+	  <img class="card-img-top" src=”img/<%= s.file_path %>”>	
+	  <div class="card-header"><%= s.title %></div>
       <div class="card-body">
-        <h5 class="card-title"><%= s.title %></h5>
-        <p class="card-text"><%= s.description %></p>
-        
+        <h5 class="card-title"><%= s.description %></h5>
 				<form action="/chargeuser" method="post" class="payment">
 						<article>
 							<label class="amount">
