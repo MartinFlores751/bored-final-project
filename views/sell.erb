@@ -4,11 +4,14 @@
   <p>No sheets under your account, please upload a new sheet</p>
   <% else %>
 	  <% @s.each do |s| %>
-	    <h3><%= s.title %></h3>
-
-	    <img src=”<%="#{Dir.pwd}/public/what2.png" %>”>
-	    <%= s.description %><br/>
-	    <%= s.created_at.to_s %><br/><br/>
+	    <div class="card text-white bg-secondary mb-3" style="max-width: 20rem;">	
+	      <img class="card-img-top" src=”img/<%= s.file_path %>”>	
+	      <div class="card-header"><%= s.title %></div>
+	      <div class="card-body">
+	        <h5 class="card-title"><%= s.description %></h5>
+	        <p class="card-text"><%= s.created_at.to_s %></p>
+	      </div>
+	    </div>
 	  <% end %>
   <% end %> 	  
 </div>

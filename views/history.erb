@@ -4,13 +4,16 @@
 		<h2>No sale has been made!</h2>
 	<% else %>
 		<% @s.each do |s| %>
-			<h2><%= Sheet.first(:id => s.sheet_id).title.to_s %></h2>
-			<h3>Buyer email: </h3>
-			<%= s.buyer %>
-			<h3>Charge: </h3>
-			<%= s.charge %><br/>
-			<h3>Date of charge: </h3>
-			<%= s.created_at %>
+
+			<div class="card text-white bg-secondary mb-3" style="max-width: 20rem;">	
+		      <img class="card-img-top" src=”img/<%= Sheet.first(:id => s.sheet_id).file_path %>”>	
+		      <div class="card-header"><%= Sheet.first(:id => s.sheet_id).title %></div>
+		      <div class="card-body">
+		        <h5 class="card-title"><%= s.charge %></h5>
+		        <p class="card-text">Buyer: <%= s.buyer %></p>
+		        <p class="card-text"><%= s.created_at %></p>
+		      </div>
+		    </div>
 		<% end %>
 	<% end %>
 </div>
