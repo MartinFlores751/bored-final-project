@@ -1,20 +1,26 @@
 <div class="container">
 	<p>Here are some charts available for purchase!!!</p>
 	<% @s.each do |s| %>
-		<h1><%= s.title %></h1>
-		<form action="/chargeuser" method="post" class="payment">
-		    <article>
-		      <label class="amount">
-		        <span>Amount: $10.00</span>
-		      </label>
-		    </article>
-		    <input type="hidden" name="songID" value=<%= s.id.to_s %>>
-		    <input type="hidden" name="owner" value=<%= s.email.to_s %>>
-		    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-		            data-key="<%= settings.publishable_key %>"
-		            data-description="A month's subscription"
-		            data-amount="1000"
-		            data-locale="auto"></script>
-	  </form>
+	<div class="card" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title"><%= s.title %></h5>
+        <p class="card-text"><%= s.description %></p>
+        <a href="<%= s.file_path %>" class="btn btn-primary">Preview Here</a>
+				<form action="/chargeuser" method="post" class="payment">
+						<article>
+							<label class="amount">
+								<span>Amount: $10.00</span>
+							</label>
+						</article>
+						<input type="hidden" name="songID" value=<%= s.id.to_s %>>
+						<input type="hidden" name="owner" value=<%= s.email.to_s %>>
+						<script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+										data-key="<%= settings.publishable_key %>"
+										data-description="A month's subscription"
+										data-amount="1000"
+										data-locale="auto"></script>
+				</form>
+      </div>
+    </div>
 	<% end %>
 </div>
