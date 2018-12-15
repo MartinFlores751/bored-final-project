@@ -5,7 +5,8 @@
 	  <h1>Here are the charts that you own:</h1>
 	  <% @s.each do |x| %>
 	  	<% v = Sheet.first(:id => x) %>
-	    <p><%= v.title.to_s %></p>
+	    <h3><%= v.title.to_s %></h3>
+	    <%= v.description %><br/><br/>
 	  <% end %>
    <% end %>
 </div>

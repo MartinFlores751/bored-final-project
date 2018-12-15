@@ -5,7 +5,8 @@
   <% else %>
 	  <% @s.each do |s| %>
 	    <h3><%= s.title %></h3>
-	    <img src=”/img/index-bg.jpg”>
+
+	    <img src=”<%="#{Dir.pwd}/public/what2.png" %>”>
 	    <%= s.description %><br/>
 	    <%= s.created_at.to_s %><br/><br/>
 	  <% end %>
