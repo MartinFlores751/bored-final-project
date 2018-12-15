@@ -1,0 +1,11 @@
+<div class="container">
+	<h1>manage your music here</h1>
+	<% if !current_user.library.empty %>
+		<% myArray = grab_items(current_user.library) %>
+		<% myArray.each do |x| %>
+			<p><%= Sheet.first(:id => x.to_i).title.to_s</p><br>
+			<p><%= Sheet.first(:id => x.to_i).description.to_s</p><br>
+		<% end %>
+	<% else %>
+	<% end %>
+</div>

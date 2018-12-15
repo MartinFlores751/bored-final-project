@@ -1,0 +1,13 @@
+<div class="container" >
+  <h1>Here's the charts you have uploaded!</h1>
+  <% if @s.empty? %>
+  <p>No sheets under your account, please upload a new sheet</p>
+  <% else %>
+	  <% @s.each do |s| %>
+	    <h3><%= s.title %></h3>
+	    <img src=”/img/index-bg.jpg”>
+	    <%= s.description %><br/>
+	    <%= s.created_at.to_s %><br/><br/>
+	  <% end %>
+  <% end %> 	  
+</div>

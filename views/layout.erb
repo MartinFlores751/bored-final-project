@@ -3,7 +3,7 @@
 <head>
 	<title></title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-	<style type="text/css">
+	<style>
 		/* Move down content because we have a fixed navbar that is 3.5rem tall */
 		body {
 		  padding-top: 3.5rem;
@@ -13,6 +13,23 @@
 <body>
 
 	<%= erb :navigation %>
+	<% if flash[:success] %>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+	        <%= flash[:success] %>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+            </div>
+         <% end %>
+
+         <% if flash[:error] %>
+             <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <%= flash[:error] %>
+                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                     </button>
+              </div>
+          <% end %>
 
 	<main role="main">
 
@@ -22,7 +39,7 @@
 
 
     <footer class="container">
-      <p>&copy; Company 2018-2019</p>
+      <p><small>&copy; Best Group Inc. 2018</small></p>
     </footer>
 
 

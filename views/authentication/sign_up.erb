@@ -1,5 +1,21 @@
-<form action="register" method="POST">
-	Email: <input type="text" name="email"><br/>
-	Password: <input type="password" name="password"><br/>
-	<input type="submit" value="Register">
-</form>
+</br>
+</br>
+</br>
+<div class="container">
+	<form action="register" method="POST">
+	  <div class="form-group">
+	    <label for="email">Email address</label>
+	    <input type="text" class="form-control" placeholder="Enter email" name="email">
+	    <small class="form-text text-muted">We'll never share your email with anyone else.</small>
+	  </div>
+	  <div class="form-group">
+	    <label for="password">Password</label>
+	    <input type="password" class="form-control" placeholder="Password" name="password">
+	  </div>
+	  <div class="form-group form-check">
+	    <input type="checkbox" class="form-check-input" name="isLH">
+	    <label class="form-check-label" for="checkLH">License Holder?</label>
+	  </div>
+	  <button type="submit" class="btn btn-primary" value="Register">Register</button>
+	</form>
+</div>

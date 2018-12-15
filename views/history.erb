@@ -1,0 +1,16 @@
+<div class="container">
+	<h1>SELL HISTORY</h1><br/>
+	<% if @s.empty? %>
+		<h2>No sale has been made!</h2>
+	<% else %>
+		<% @s.each do |s| %>
+			<h2><%= Sheet.first(:id => s.sheet_id).title.to_s %></h2>
+			<h3>Buyer email: </h3>
+			<%= s.buyer %>
+			<h3>Charge: </h3>
+			<%= s.charge %><br/>
+			<h3>Date of charge: </h3>
+			<%= s.created_at %>
+		<% end %>
+	<% end %>
+</div>
