@@ -1,13 +1,18 @@
-<form action="/chargeuser" method="post" class="payment">
-    <article>
-      <label class="amount">
-        <span>Amount: $100.00</span>
-      </label>
-    </article>
+<div class="container" >
+  <h1>Get subbed to sell your items!</h1>
+  <form action="/chargeuser" method="post" class="payment">
+      <article>
+        <label class="amount">
+          <span>Amount: $100.00</span>
+        </label>
+      </article>
 
-    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-            data-key="<%= settings.publishable_key %>"
-            data-description="A month's subscription"
-            data-amount="10000"
-            data-locale="auto"></script>
-  </form>
+      <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+              data-key="<%= settings.publishable_key %>"
+              data-description="A month's subscription"
+              data-amount="10000"
+              data-locale="auto"></script>
+  </form>  
+</div>
+
+

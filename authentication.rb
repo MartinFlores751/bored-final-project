@@ -79,6 +79,16 @@ def authenticate!
 	end
 end
 
+def authenticateSubbed!
+	if current_user.subbed == false
+		if current_user.role == 3
+			#do nothing we're good
+		else
+			redirect "/get_subbed"
+		end
+	end
+end
+
 def authenticate_customer!
 	if !current_user
 		redirect "/login"

@@ -39,6 +39,7 @@ if User.all(role: 3).count == 0
   u.email = "admin@admin.com"
   u.password = "admin"
   u.role = 3
+  u.subbed = true
   u.save
 end
 
@@ -79,22 +80,6 @@ get "/search" do
   erb :finder
 end
 
-get "/purchase" do
-  authenticate!
-  puts(params[:songID])
-  if current_user.role ==1
-  erb :purchaseuser
-elsif current_user.role ==2
-	erb :purchasecomposer
-end
-end
-
-post '/selectSong' do
-  #puts("puchased!")
-  #puts(params[:songID])
-  redirect "/purchase"
-end
-
 post '/chargeuser' do
   puts(params[:songID])
   # Amount in cents
@@ -128,8 +113,11 @@ post '/chargeuser' do
     u.seller = params[:owner]
     u.save
   elsif current_user.role ==2
-      #add licenser sub at the end if time permits
+    #add licenser sub at the end if time permits
     puts("Subscribed wooooooo")
+    u = current_user
+    u.subbed = true
+    u.save
   end
   redirect "/success"
 end
@@ -142,6 +130,7 @@ end
 # /////////////////////////
 get "/seller_dashboard" do
   authenticate!
+  authenticateSubbed!
   if current_user && (current_user.role == 2 || current_user.role == 3)
     @s = Sheet.all(email: current_user.email)
     erb :sell
@@ -152,6 +141,7 @@ end
 
 get "/upload_music" do
   authenticate!
+  authenticateSubbed!
   if current_user.role == 1
     redirect "/dashboard"
   elsif current_user.role == 2
@@ -180,8 +170,15 @@ post "/upload_music" do
 end
 
 get "/sell_history" do
+  authenticate!
+  authenticateSubbed!
   @s = History.all(:seller => current_user.email)
   erb :history
+end
+
+get "/get_subbed" do
+  authenticate!
+  erb :purchasecomposer
 end
 
 # /////////////////////////////
