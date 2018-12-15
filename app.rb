@@ -106,6 +106,7 @@ post '/chargeuser' do
     #This is where you create a history object
     #you should only ever create an object HERE
     #params could possibly carry it
+    add_item(params[:songID])
     u = History.new
     u.sheet_id = params[:songID].to_i
     u.charge = "$10.00"
@@ -187,7 +188,7 @@ get "/get_subbed" do
 end
 
 # /////////////////////////////
-# Left Overs (AKA WTF is this?)
+# Left Overs (Unimplemented items etc.)
 # /////////////////////////////
 get "/find_accountzoom" do
   authenticate!
