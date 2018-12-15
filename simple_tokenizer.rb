@@ -135,6 +135,16 @@ def set_up
 		add_item(Sheet.first(:title => "default title").id.to_i, u)
 		add_item(Sheet.first(:title => "default title 2").id.to_i, u)
 		add_item(Sheet.first(:title => "default title 3").id.to_i, u)
+		#x = History.new
+	    #x.sheet_id = 1.to_i
+	    #x.charge = "$10.00".to_s
+	    #x.buyer = "default@customer.com".to_s
+	    #x.seller = "default@license.com".to_s
+	    #x.save
+	    #puts(x.save)
+	    #puts(x.errors)
+	    #puts(1)
+	    #puts(1)
 end
 
 

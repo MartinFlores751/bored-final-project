@@ -1,9 +1,9 @@
 <div class="container">
 	<h1>SELL HISTORY</h1><br/>
-	<% if @s.empty? %>
+	<% if @c.empty? %>
 		<h2>No sale has been made!</h2>
 	<% else %>
-		<% @s.each do |s| %>
+		<% @c.each do |s| %>
 
 			<div class="card text-white bg-secondary mb-3" style="max-width: 20rem;">	
 		      <img class="card-img-top" src="img/<%= Sheet.first(:id => s.sheet_id).file_path %>">	
