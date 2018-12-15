@@ -115,7 +115,7 @@ post '/chargeuser' do
     #puts(u.charge)
     x.buyer = current_user.email.to_s
     #puts(u.buyer)
-    x.seller = params[:owner]
+    x.seller = params[:owner].to_s
     #puts(u.seller)
     x.save
   elsif current_user.role ==2
@@ -184,7 +184,9 @@ end
 get "/sell_history" do
   authenticate!
   authenticateSubbed!
-  @s = History.all(:seller => current_user.email)
+  puts(current_user.email)
+  @c = History.all(:seller => current_user.email)
+  puts(@c)
   erb :history
 end
 
