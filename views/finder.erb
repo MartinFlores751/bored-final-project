@@ -2,7 +2,7 @@
 	<p>Here are some charts available for purchase!!!</p>
 	<% @s.each do |s| %>
 	<div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
-	  <img class="card-img-top" src=”img/<%= s.file_path %>”>	
+	  <img class="card-img-top" src="img/<%= s.file_path %>">	
 	  <div class="card-header"><%= s.title %></div>
       <div class="card-body">
         <h5 class="card-title"><%= s.description %></h5>
@@ -16,7 +16,7 @@
 						<input type="hidden" name="owner" value=<%= s.email.to_s %>>
 						<script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
 										data-key="<%= settings.publishable_key %>"
-										data-description="A month's subscription"
+										data-description="License Fee!"
 										data-amount="1000"
 										data-locale="auto"></script>
 				</form>
