@@ -1,7 +1,11 @@
 <div class="container">
-  <p>Here are the charts that you own:</p>
-  <% @s.each do |x| %>
-  	<% v = Sheet.first(:id => x) %>
-    <p><%= v.title.to_s %></p>
-  <% end %>
+  <% if @s == nil %>
+  	<br/><br/><p>You have no charts licensed to you.  Please browse through our collection!</p>
+  <% else %>
+	  <h1>Here are the charts that you own:</h1>
+	  <% @s.each do |x| %>
+	  	<% v = Sheet.first(:id => x) %>
+	    <p><%= v.title.to_s %></p>
+	  <% end %>
+   <% end %>
 </div>
